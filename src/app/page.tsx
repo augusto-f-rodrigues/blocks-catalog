@@ -1,14 +1,14 @@
 import Footer from "@/components/Footer";
 import Header from "../components/Header";
-import Button from "@/components/Button";
+import Advertising from "@/components/Advertising";
 
 
 export default function Home() {
   return (
    <main>
-    <Button text="Quero ser Premium"/>
+    <Advertising/>
     <Header/>
-    <div>
+    <div className="h-[1000px]">
       <h1>Catálogo</h1>
     </div>
     <section>
