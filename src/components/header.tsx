@@ -1,11 +1,15 @@
+"use client"
+import Image from 'next/image'
 import React, { Component } from 'react'
 
-export class header extends Component {
+export class Header extends Component {
   render() {
     return (
-      <div>header</div>
+      <header className='flex items-center justify-center h-20'>
+        <Image alt='logo-blocks' src={'/logo.png'} width={146} height={54}/>
+      </header>
     )
   }
 }
 
-export default header
+export default Header
