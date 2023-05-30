@@ -1,6 +1,6 @@
-export type IFamilies = IFamilie[]
+export type IFamilies = IFamily[]
 
-export interface IFamilie {
+export interface IFamily {
   id: string
   premium: boolean
   details: IDetails
