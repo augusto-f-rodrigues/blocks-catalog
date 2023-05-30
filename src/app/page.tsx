@@ -1,12 +1,12 @@
 "use client";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import Advertising from "@/components/Advertising";
 import AdvertisingMobile from "@/components/AdvertisingMobile";
-import { useEffect, useState } from "react";
+import Header from "@/components/Header";
 import { IFamilies } from "@/interfaces/families";
 import axios from "axios";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [families, setFamilies] = useState<IFamilies>([]);
@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <main>
       <Advertising />
-      <Header />
+      <Header/>
       <div className="h-[90px] bg-gradient-to-r from-gradient-end to-gradient-start pt-1">
         <div className="flex h-full w-full flex-col justify-center bg-white p-[14px] shadow-md md:items-center lg:h-[94px]">
           <div className="md:w-3/4">
