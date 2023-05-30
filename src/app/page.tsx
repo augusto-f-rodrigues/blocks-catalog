@@ -1,6 +1,6 @@
 "use client";
 import Footer from "@/components/Footer";
-import Header from "../components/Header";
+import Header from "@/components/Header";
 import Advertising from "@/components/Advertising";
 import AdvertisingMobile from "@/components/AdvertisingMobile";
 import { useEffect, useState } from "react";
