@@ -10,6 +10,7 @@ import Image from "next/image";
 
 export default function Home() {
   const [families, setFamilies] = useState<IFamilies>([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     axios
@@ -24,33 +25,53 @@ export default function Home() {
       });
   }, []);
 
+  const loadMore = (page: number) => {
+    axios
+      .get(
+        `https://test-candidaturas-front-end.onrender.com/families?skip=${
+          page * 10
+        }&take=10`
+      )
+      .then((resposta) => {
+        setFamilies([...families, ...resposta.data]);
+        setPage(page + 1);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  };
+
   return (
     <main>
       <Advertising />
       <Header />
       <div className="h-[90px] bg-gradient-to-r from-gradient-end to-gradient-start pt-1">
-        <div className="flex h-full w-full flex-col justify-center bg-white p-[14px] shadow-md lg:h-[94px] lg:justify-center">
-          <h1 className="text-2xl font-bold lg:text-[28px]">Catálogo</h1>
-          <div className="h-[4px] w-[34px] rounded-full bg-gradient-to-r from-gradient-end to-gradient-start"></div>
+        <div className="flex h-full w-full flex-col justify-center bg-white p-[14px] shadow-md md:items-center lg:h-[94px]">
+          <div className="md:w-3/4">
+            <h1 className="text-2xl font-bold lg:text-[28px]">Catálogo</h1>
+            <div className="h-[4px] w-[34px] rounded-full bg-gradient-to-r from-gradient-end to-gradient-start"></div>
+          </div>
         </div>
       </div>
-      <section className="flex min-h-screen items-center flex-col px-7 py-3 lg:p-[34px]">
-        <div className="lg:w-3/4">
-          <h2 className="text-xl font-semibold lg:text-2xl">Resultados</h2>
+      <section className="flex min-h-screen w-full flex-col items-center px-[14px] py-3 lg:py-[34px]">
+        <div className="md:w-3/4 ">
+          <h2 className="mb-[18px] text-xl font-semibold lg:text-2xl">
+            Resultados
+          </h2>
           <ul className="flex flex-wrap justify-around gap-y-3">
             {families.map((family) => (
               <li
                 key={family.id}
-                className="flex h-[184px] w-[125px] flex-col items-center rounded-lg border-2"
+                className="flex h-[184px] w-[125px] flex-col items-center rounded-lg border-2 lg:h-[234px] lg:w-[176px]"
               >
                 <Image
                   alt={family.details.name}
                   src={`https://plugin-storage.nyc3.digitaloceanspaces.com/families/images/${family.id}.jpg`}
                   width={100}
                   height={137}
-                  // className="h-full"
+                  className="familyImg lg:h-[190px]"
                 />
-                <div className="flex h-[50px] items-center justify-center border-t-2 w-full p-2">
+                <div className="flex h-[50px] w-full items-center justify-center border-t-2 p-2">
                   <span className="w-[90px] overflow-hidden overflow-ellipsis whitespace-nowrap text-xs">
                     {family.details.name}
                   </span>
@@ -71,6 +92,15 @@ export default function Home() {
               </li>
             ))}
           </ul>
+          <div className="mt-3 flex w-full justify-center">
+            <button
+              className="h-12 rounded-lg bg-gradient-to-r from-gradient-end to-gradient-start p-3 text-white"
+              onClick={() => loadMore(page)}
+            >
+              <span>Veja mais</span>
+            </button>
+          </div>
+          {/* <button onClick={() => loadMore(page)}>See more</button> */}
         </div>
       </section>
       <Footer />
