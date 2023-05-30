@@ -1,9 +1,9 @@
 "use client";
-import Footer from "@/components/Footer";
-import Advertising from "@/components/Advertising";
-import AdvertisingMobile from "@/components/AdvertisingMobile";
-import Header from "@/components/Header";
-import { IFamilies } from "@/interfaces/families";
+import Footer from "../components/Footer";
+import Advertising from "../components/Advertising";
+import AdvertisingMobile from "../components/AdvertisingMobile";
+import Header from "../components/Header";
+import { IFamilies } from "../interfaces/families";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
